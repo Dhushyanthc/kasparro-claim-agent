@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: claims
+      POSTGRES_PASSWORD: claims
+      POSTGRES_DB: claims
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - claims_pgdata:/var/lib/postgresql/data
+
+volumes:
+  claims_pgdata:

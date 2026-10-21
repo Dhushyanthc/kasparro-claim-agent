@@ -1,0 +1,31 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\dhush\OneDrive\Desktop\claim-agent\kasparro-claim-agent\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\dhush\OneDrive\Desktop\claim-agent\kasparro-claim-agent
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1
+collecting ... collected 20 items
+
+tests/test_agent.py::test_tool_returns_every_row_for_the_brand[cleartrail] PASSED [  5%]
+tests/test_agent.py::test_tool_returns_every_row_for_the_brand[stonewave] PASSED [ 10%]
+tests/test_agent.py::test_tool_returns_every_row_for_the_brand[cloudnote] PASSED [ 15%]
+tests/test_agent.py::test_tool_schema_has_one_string_property PASSED     [ 20%]
+tests/test_agent.py::test_wrong_tool_name_is_illegal PASSED              [ 25%]
+tests/test_agent.py::test_bad_tool_arguments_are_invalid_output[{not json] PASSED [ 30%]
+tests/test_agent.py::test_bad_tool_arguments_are_invalid_output[[]] PASSED [ 35%]
+tests/test_agent.py::test_bad_tool_arguments_are_invalid_output[{}] PASSED [ 40%]
+tests/test_agent.py::test_bad_tool_arguments_are_invalid_output[{"brand_id":1}] PASSED [ 45%]
+tests/test_agent.py::test_bad_tool_arguments_are_invalid_output[{"brand_id":"cleartrail","extra":1}] PASSED [ 50%]
+tests/test_agent.py::test_bad_tool_arguments_are_invalid_output[null] PASSED [ 55%]
+tests/test_agent.py::test_unknown_brand_is_rejected PASSED               [ 60%]
+tests/test_data.py::test_quoted_comma_and_embedded_newline_are_exact PASSED [ 65%]
+tests/test_data.py::test_answers_split_counts PASSED                     [ 70%]
+tests/test_data.py::test_every_gold_quote_equals_its_slice PASSED        [ 75%]
+tests/test_data.py::test_boolean_parsing_is_strict PASSED                [ 80%]
+tests/test_data.py::test_number_parsing PASSED                           [ 85%]
+tests/test_data.py::test_facts_catalogue PASSED                          [ 90%]
+tests/test_data.py::test_hash_check_passes PASSED                        [ 95%]
+tests/test_data.py::test_hash_check_fails_on_modified_copy PASSED        [100%]
+
+============================= 20 passed in 0.17s ==============================
