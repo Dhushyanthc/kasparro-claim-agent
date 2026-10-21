@@ -240,3 +240,23 @@ def test_openai_provider_requires_a_key(monkeypatch):
     monkeypatch.setattr(settings, "openai_api_key", None)
     with pytest.raises(RuntimeError, match="OPENAI_API_KEY"):
         OpenAIProvider()
+
+
+def test_prompt_hashes_are_pinned_to_the_runs_that_used_them():
+    assert prompt_sha256("v1") == "0a09474cf5a361533e24972fbd44bde543298ebb190e6e5f839774429ee29ec0"
+    assert prompt_sha256("v2") == "fd4c9d66cf612285db8e23f2eb1605757740f8fa74a9175fdfe4ff7e732acc17"
+
+
+def test_v2_differs_from_v1_by_exactly_the_occurrence_line():
+    v1_system, v1_user = agent.load_prompts("v1")
+    v2_system, v2_user = agent.load_prompts("v2")
+    assert v1_user == v2_user
+    changed = [(a, b) for a, b in zip(v1_system.splitlines(), v2_system.splitlines()) if a != b]
+    assert len(v1_system.splitlines()) == len(v2_system.splitlines()) and len(changed) == 1
+    assert changed[0][0].startswith("- occurrence:") and changed[0][1].startswith("- occurrence:")
+
+
+def test_v2_prompt_builds_for_a_classification():
+    provider = FakeProvider([tool_turn(), final_turn([])])
+    assert classify(INPUT, "v2", provider).claims == []
+    assert "never claims or sentences" in provider.requests[0]["messages"][0]["content"]
