@@ -15,3 +15,4 @@ class AgentError(Exception):
         super().__init__(message)
         self.kind = kind
         self.message = message
+        self.exchange: dict | None = None
