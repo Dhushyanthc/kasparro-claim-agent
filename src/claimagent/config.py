@@ -6,6 +6,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = ROOT / "data"
 PROMPTS_DIR = Path(__file__).resolve().parent / "prompts"
+REPORTS_DIR = ROOT / "reports"
 
 DATASET_VERSION = "long-brand-answers-50-v4"
 FACT_VERSION = "speaker-catalogue-v4"
